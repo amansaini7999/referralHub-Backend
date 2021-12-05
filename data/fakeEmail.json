@@ -1,0 +1,13 @@
+{
+  "data": [
+    { "email": "test0@test.com", "password": "abcdef" },
+    { "email": "test1@test.com", "password": "abcdef" },
+    { "email": "test2@test.com", "password": "abcdef" },
+    { "email": "test3@test.com", "password": "abcdef" },
+    { "email": "test4@test.com", "password": "abcdef" },
+    { "email": "test5@test.com", "password": "abcdef" },
+    { "email": "test6@test.com", "password": "abcdef" },
+    { "email": "test7@test.com", "password": "abcdef" },
+    { "email": "test8@test.com", "password": "abcdef" }
+  ]
+}
