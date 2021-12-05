@@ -1,0 +1,542 @@
+{
+  "data": [
+    {
+      "firstName": "Abcde",
+      "lastName": "abhsh",
+      "mobileNumber": 9999999999,
+      "resume": "https//:xyz.com",
+      "accountType": "professional",
+      "profile": {
+        "LinkedIn": "xyy.com",
+        "Codechef": "xyz.com",
+        "Codeforces": "xyz.com",
+        "Github": "xyz.com",
+        "Leetcode": "xyz.com"
+      },
+      "education": [
+        {
+          "degree": "b-tech",
+          "name": "abc",
+          "cgpa": 9.4,
+          "currentStudent": false,
+          "duration": {
+            "start": {
+              "month": 1,
+              "year": 2018
+            }
+          }
+        },
+        {
+          "degree": "m-tech",
+          "name": "abc",
+          "cgpa": 9.4,
+          "currentStudent": true,
+          "duration": {
+            "start": {
+              "month": 1,
+              "year": 2019
+            }
+          }
+        }
+      ],
+      "workExperience": [
+        {
+          "companyName": "flipkart",
+          "jobRole": "mdskmksmdks",
+          "currentWorking": true,
+          "fulltime": true,
+          "duration": {
+            "start": {
+              "month": 1,
+              "year": 2019
+            },
+            "end": {
+              "month": 11,
+              "year": "2019"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "firstName": "Abnjajsnjsancde",
+      "lastName": "abhsh",
+      "mobileNumber": 9999999999,
+      "resume": "https//:xyz.com",
+      "accountType": "professional",
+      "profile": {
+        "LinkedIn": "xyy.com",
+        "Codechef": "xyz.com",
+        "Codeforces": "xyz.com",
+        "Github": "xyz.com",
+        "Leetcode": "xyz.com"
+      },
+      "education": [
+        {
+          "degree": "b-tech",
+          "name": "abc",
+          "cgpa": 9.4,
+          "currentStudent": false,
+          "duration": {
+            "start": {
+              "month": 1,
+              "year": 2018
+            },
+            "end": {
+              "month": 11,
+              "year": 2022
+            }
+          }
+        },
+        {
+          "degree": "m-tech",
+          "name": "abc",
+          "cgpa": 9.4,
+          "currentStudent": true,
+          "duration": {
+            "start": {
+              "month": 1,
+              "year": 2019
+            }
+          }
+        }
+      ],
+      "workExperience": [
+        {
+          "companyName": "abc",
+          "jobRole": "mdskmksmdks",
+          "currentWorking": false,
+          "fulltime": true,
+          "duration": {
+            "start": {
+              "month": 1,
+              "year": 2019
+            },
+            "end": {
+              "month": 11,
+              "year": "2019"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "firstName": "Abnjajsnjsancde",
+      "lastName": "abhsh",
+      "mobileNumber": 9999999999,
+      "resume": "https//:xyz.com",
+      "accountType": "professional",
+      "profile": {
+        "LinkedIn": "xyy.com",
+        "Codechef": "xyz.com",
+        "Codeforces": "xyz.com",
+        "Github": "xyz.com",
+        "Leetcode": "xyz.com"
+      },
+      "education": [
+        {
+          "degree": "b-tech",
+          "name": "abc",
+          "cgpa": 9.4,
+          "currentStudent": false,
+          "duration": {
+            "start": {
+              "month": 1,
+              "year": 2018
+            },
+            "end": {
+              "month": 11,
+              "year": 2022
+            }
+          }
+        },
+        {
+          "degree": "m-tech",
+          "name": "abc",
+          "cgpa": 9.4,
+          "currentStudent": true,
+          "duration": {
+            "start": {
+              "month": 1,
+              "year": 2019
+            }
+          }
+        }
+      ],
+      "workExperience": [
+        {
+          "companyName": "microsoft",
+          "jobRole": "mdskmksmdks",
+          "currentWorking": true,
+          "fulltime": true,
+          "duration": {
+            "start": {
+              "month": 1,
+              "year": 2019
+            }
+          }
+        }
+      ]
+    },
+    {
+      "firstName": "Abnjajsnjsancde",
+      "lastName": "abhsh",
+      "mobileNumber": 9999999999,
+      "resume": "https//:xyz.com",
+      "accountType": "professional",
+      "profile": {
+        "LinkedIn": "xyy.com",
+        "Codechef": "xyz.com",
+        "Codeforces": "xyz.com",
+        "Github": "xyz.com",
+        "Leetcode": "xyz.com"
+      },
+      "education": [
+        {
+          "degree": "b-tech",
+          "name": "abc",
+          "cgpa": 9.4,
+          "currentStudent": false,
+          "duration": {
+            "start": {
+              "month": 1,
+              "year": 2018
+            },
+            "end": {
+              "month": 11,
+              "year": 2022
+            }
+          }
+        },
+        {
+          "degree": "m-tech",
+          "name": "abc",
+          "cgpa": 9.4,
+          "currentStudent": true,
+          "duration": {
+            "start": {
+              "month": 1,
+              "year": 2019
+            }
+          }
+        }
+      ],
+      "workExperience": [
+        {
+          "companyName": "abc",
+          "jobRole": "mdskmksmdks",
+          "currentWorking": false,
+          "fulltime": true,
+          "duration": {
+            "start": {
+              "month": 1,
+              "year": 2019
+            },
+            "end": {
+              "month": 11,
+              "year": "2019"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "firstName": "Abnjajsnjsancde",
+      "lastName": "abhsh",
+      "mobileNumber": 9999999999,
+      "resume": "https//:xyz.com",
+      "accountType": "professional",
+      "profile": {
+        "LinkedIn": "xyy.com",
+        "Codechef": "xyz.com",
+        "Codeforces": "xyz.com",
+        "Github": "xyz.com",
+        "Leetcode": "xyz.com"
+      },
+      "education": [
+        {
+          "degree": "b-tech",
+          "name": "abc",
+          "cgpa": 9.4,
+          "currentStudent": false,
+          "duration": {
+            "start": {
+              "month": 1,
+              "year": 2018
+            },
+            "end": {
+              "month": 11,
+              "year": 2022
+            }
+          }
+        },
+        {
+          "degree": "m-tech",
+          "name": "abc",
+          "cgpa": 9.4,
+          "currentStudent": true,
+          "duration": {
+            "start": {
+              "month": 1,
+              "year": 2019
+            }
+          }
+        }
+      ],
+      "workExperience": [
+        {
+          "companyName": "google",
+          "jobRole": "mdskmksmdks",
+          "currentWorking": true,
+          "fulltime": true,
+          "duration": {
+            "start": {
+              "month": 1,
+              "year": 2019
+            }
+          }
+        }
+      ]
+    },
+    {
+      "firstName": "Abnjajsnjsancde",
+      "lastName": "abhsh",
+      "mobileNumber": 9999999999,
+      "resume": "https//:xyz.com",
+      "accountType": "professional",
+      "profile": {
+        "LinkedIn": "xyy.com",
+        "Codechef": "xyz.com",
+        "Codeforces": "xyz.com",
+        "Github": "xyz.com",
+        "Leetcode": "xyz.com"
+      },
+      "education": [
+        {
+          "degree": "b-tech",
+          "name": "abc",
+          "cgpa": 9.4,
+          "currentStudent": false,
+          "duration": {
+            "start": {
+              "month": 1,
+              "year": 2018
+            },
+            "end": {
+              "month": 11,
+              "year": 2022
+            }
+          }
+        },
+        {
+          "degree": "m-tech",
+          "name": "abc",
+          "cgpa": 9.4,
+          "currentStudent": true,
+          "duration": {
+            "start": {
+              "month": 1,
+              "year": 2019
+            }
+          }
+        }
+      ],
+      "workExperience": [
+        {
+          "companyName": "abc",
+          "jobRole": "mdskmksmdks",
+          "currentWorking": false,
+          "fulltime": true,
+          "duration": {
+            "start": {
+              "month": 1,
+              "year": 2019
+            },
+            "end": {
+              "month": 11,
+              "year": "2019"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "firstName": "Abnjajsnjsancde",
+      "lastName": "abhsh",
+      "mobileNumber": 9999999999,
+      "resume": "https//:xyz.com",
+      "accountType": "professional",
+      "profile": {
+        "LinkedIn": "xyy.com",
+        "Codechef": "xyz.com",
+        "Codeforces": "xyz.com",
+        "Github": "xyz.com",
+        "Leetcode": "xyz.com"
+      },
+      "education": [
+        {
+          "degree": "b-tech",
+          "name": "abc",
+          "cgpa": 9.4,
+          "currentStudent": false,
+          "duration": {
+            "start": {
+              "month": 1,
+              "year": 2018
+            },
+            "end": {
+              "month": 11,
+              "year": 2022
+            }
+          }
+        },
+        {
+          "degree": "m-tech",
+          "name": "abc",
+          "cgpa": 9.4,
+          "currentStudent": true,
+          "duration": {
+            "start": {
+              "month": 1,
+              "year": 2019
+            }
+          }
+        }
+      ],
+      "workExperience": [
+        {
+          "companyName": "abc",
+          "jobRole": "mdskmksmdks",
+          "currentWorking": false,
+          "fulltime": true,
+          "duration": {
+            "start": {
+              "month": 1,
+              "year": 2019
+            },
+            "end": {
+              "month": 11,
+              "year": "2019"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "firstName": "Abnjajsnjsancde",
+      "lastName": "abhsh",
+      "mobileNumber": 9999999999,
+      "resume": "https//:xyz.com",
+      "accountType": "professional",
+      "profile": {
+        "LinkedIn": "xyy.com",
+        "Codechef": "xyz.com",
+        "Codeforces": "xyz.com",
+        "Github": "xyz.com",
+        "Leetcode": "xyz.com"
+      },
+      "education": [
+        {
+          "degree": "b-tech",
+          "name": "abc",
+          "cgpa": 9.4,
+          "currentStudent": false,
+          "duration": {
+            "start": {
+              "month": 1,
+              "year": 2018
+            },
+            "end": {
+              "month": 11,
+              "year": 2022
+            }
+          }
+        },
+        {
+          "degree": "m-tech",
+          "name": "abc",
+          "cgpa": 9.4,
+          "currentStudent": true,
+          "duration": {
+            "start": {
+              "month": 1,
+              "year": 2019
+            }
+          }
+        }
+      ],
+      "workExperience": [
+        {
+          "companyName": "cisco",
+          "jobRole": "mdskmksmdks",
+          "currentWorking": true,
+          "fulltime": true,
+          "duration": {
+            "start": {
+              "month": 1,
+              "year": 2019
+            }
+          }
+        }
+      ]
+    },
+    {
+      "firstName": "Abnjajsnjsancde",
+      "lastName": "abhsh",
+      "mobileNumber": 9999999999,
+      "resume": "https//:xyz.com",
+      "accountType": "professional",
+      "profile": {
+        "LinkedIn": "xyy.com",
+        "Codechef": "xyz.com",
+        "Codeforces": "xyz.com",
+        "Github": "xyz.com",
+        "Leetcode": "xyz.com"
+      },
+      "education": [
+        {
+          "degree": "b-tech",
+          "name": "abc",
+          "cgpa": 9.4,
+          "currentStudent": false,
+          "duration": {
+            "start": {
+              "month": 1,
+              "year": 2018
+            },
+            "end": {
+              "month": 11,
+              "year": 2022
+            }
+          }
+        },
+        {
+          "degree": "m-tech",
+          "name": "abc",
+          "cgpa": 9.4,
+          "currentStudent": true,
+          "duration": {
+            "start": {
+              "month": 1,
+              "year": 2019
+            }
+          }
+        }
+      ],
+      "workExperience": [
+        {
+          "companyName": "google",
+          "jobRole": "mdskmksmdks",
+          "currentWorking": true,
+          "fulltime": true,
+          "duration": {
+            "start": {
+              "month": 1,
+              "year": 2019
+            }
+          }
+        }
+      ]
+    }
+  ]
+}

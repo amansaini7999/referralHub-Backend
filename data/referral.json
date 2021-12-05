@@ -1,0 +1,67 @@
+{
+  "microsoft": [
+    {
+      "status": "rejected",
+      "nosRejected": 6
+    },
+    {
+      "nosRejected": 0
+    },
+    {
+      "status": "reffered",
+      "nosRejected": 1
+    },
+    {
+      "status": "reffered",
+      "nosRejected": 0
+    }
+  ],
+  "google": [
+    {
+      "status": "skipped",
+      "nosRejected": 3
+    },
+    {
+      "status": "rejected",
+      "nosRejected": 5
+    },
+    {
+      "status": "reffered",
+      "nosRejected": 2
+    },
+    {
+      "status": "reffered",
+      "nosRejected": 1
+    },
+    {
+      "status": "skipped",
+      "nosRejected": 3
+    }
+  ],
+  "cisco": [
+    {
+      "nosRejected": 0
+    },
+    {
+      "status": "skipped",
+      "nosRejected": 0
+    },
+    {
+      "status": "rejected",
+      "nosRejected": 4
+    },
+    {
+      "status": "reffered",
+      "nosRejected": 1
+    }
+  ],
+  "flipkart": [
+    {
+      "nosRejected": 0
+    },
+    {
+      "status": "reffered",
+      "nosRejected": 0
+    }
+  ]
+}

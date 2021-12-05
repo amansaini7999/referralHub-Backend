@@ -18,7 +18,11 @@
   },
   "homepage": "https://github.com/amansaini7999/referralHub-Backend#readme",
   "dependencies": {
+    "body-parser": "^1.19.0",
     "cors": "^2.8.5",
-    "express": "^4.17.1"
+    "dotenv": "^10.0.0",
+    "express": "^4.17.1",
+    "firebase": "^9.2.0",
+    "firebase-admin": "^10.0.0"
   }
 }
