@@ -73,6 +73,7 @@ exports.databaseSeed = () => {
           ...jobListing,
           postedBy: firestore.doc("users/" + users[jobCreatedBy[index]]),
         };
+        jobListing.datePosted = new Date(jobListing.datePosted);
         jobListing = await firestore.collection("job-listings").add(jobListing);
         jobListings.push(jobListing.id);
       }
