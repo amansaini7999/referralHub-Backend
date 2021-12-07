@@ -2,7 +2,7 @@ const express = require("express");
 require("dotenv").config();
 const bodyParser = require("body-parser");
 const { databaseSeed } = require("./utility/databaseSeeding");
-app = express();
+const app = express();
 
 app.use(bodyParser.json());
 
