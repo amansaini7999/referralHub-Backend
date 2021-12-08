@@ -30,3 +30,73 @@ exports.postNewJob = async (req, res, next) => {
     });
   }
 };
+
+exports.getJobListings = async (req, res, next) => {
+  try {
+    const { lastJobId } = req.query;
+    let jobs;
+    const pageSize = 2;
+    if (!lastJobId) {
+      jobs = await firestore
+        .collection("job-listings")
+        .orderBy("datePosted", "desc")
+        .limit(pageSize + 1)
+        .get();
+    } else {
+      const lastJob = await firestore
+        .collection("job-listings")
+        .doc(lastJobId)
+        .get();
+      if (!lastJob.exists) {
+        return res.status(400).send({
+          message: "Job does not exists",
+        });
+      }
+      jobs = await firestore
+        .collection("job-listings")
+        .orderBy("datePosted", "desc")
+        .startAfter(lastJob)
+        .limit(pageSize + 1)
+        .get();
+    }
+    jobs = jobs.docs;
+    const hasNext = jobs.length == pageSize + 1 ? 1 : 0;
+    if (jobs.length == pageSize + 1) {
+      jobs.pop();
+    }
+    let jobListings = [];
+    for (let job of jobs) {
+      let data = {
+        id: job.id,
+        company: job.data().company,
+        datePosted: job.data().datePosted.toDate(),
+      };
+      const postedBy = await firestore
+        .collection("users")
+        .doc(job.data().postedBy.id)
+        .get();
+      data.postedBy = {
+        id: postedBy.id,
+        firstName: postedBy.data().firstName,
+        lastName: postedBy.data().lastName,
+      };
+      if (job.data().jobId) {
+        data.jobId = job.data().jobId;
+      } else {
+        data.jobLink = job.data().jobId;
+      }
+      jobListings.push(data);
+    }
+    res
+      .send({
+        data: jobListings,
+        hasNext,
+      })
+      .status(200);
+  } catch (err) {
+    res.status(500).send({
+      message: "Internal error occurred",
+      error: err,
+    });
+  }
+};
