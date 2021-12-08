@@ -1,6 +1,7 @@
 const firebase = require("../db");
 const firestore = firebase.firestore();
 const { validationResult } = require("express-validator");
+const admin = require("firebase-admin");
 
 ////Posting new job-listing
 exports.postNewJob = async (req, res, next) => {
@@ -93,6 +94,45 @@ exports.getJobListings = async (req, res, next) => {
         hasNext,
       })
       .status(200);
+  } catch (err) {
+    res.status(500).send({
+      message: "Internal error occurred",
+      error: err,
+    });
+  }
+};
+
+//// User requesting referral
+exports.postReferral = async (req, res) => {
+  try {
+    let data = req.body;
+    if (!data.jobReference) {
+      return res.status(400).send({
+        message: "Job reference is not present",
+      });
+    }
+    const job = await firestore
+      .collection("job-listings")
+      .doc(data.jobReference)
+      .get();
+    if (!job.exists) {
+      return res.status(400).send({
+        message: "Job does not exists",
+      });
+    }
+    data.jobReference = firestore.doc("job-listings/" + data.jobReference);
+    data.candidate = firestore.doc("users/" + req.user.user_id);
+    data.nosRejected = 0;
+    const company = job.data().company;
+    await firestore
+      .collection("referral")
+      .doc(company)
+      .update({
+        data: admin.firestore.FieldValue.arrayUnion(data),
+      });
+    res.send({
+      message: "Referral is requested successfully",
+    });
   } catch (err) {
     res.status(500).send({
       message: "Internal error occurred",
