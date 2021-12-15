@@ -61,6 +61,7 @@ exports.getJobListings = async (req, res, next) => {
         .get();
     }
     jobs = jobs.docs;
+    // console.log(jobs);
     const hasNext = jobs.length == pageSize + 1 ? 1 : 0;
     if (jobs.length == pageSize + 1) {
       jobs.pop();
@@ -130,10 +131,17 @@ exports.postReferral = async (req, res) => {
       .update({
         data: admin.firestore.FieldValue.arrayUnion(data),
       });
+      //// adding jobReference to user's requested-referral subcollection
+    await firestore
+      .collection("users")
+      .doc(req.user.user_id)
+      .collection("requested-referral")
+      .add({jobReference:data.jobReference});
     res.send({
       message: "Referral is requested successfully",
     });
   } catch (err) {
+    // console.log(err);
     res.status(500).send({
       message: "Internal error occurred",
       error: err,
