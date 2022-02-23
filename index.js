@@ -11,13 +11,16 @@ const app = express();
 app.use(bodyParser.json());
 app.use(require("cors")());
 
-app.use("/", userRoutes);
-app.use("/", jobListingRoutes);
+app.use('/home',(req,res)=>{
+  res.send("Welcome to the server");
+})
+app.use('/users', userRoutes);
+app.use('/jobListing', jobListingRoutes);
 
 if (process.env.NODE_ENV == "development") {
   databaseSeed();
 }
 
-app.listen(3000, () => {
-  console.log("Server running at port 3000");
-});
+const PORT = process.env.PORT || 5000;
+
+app.listen(PORT, () => console.log(`Server Running on Port: http://localhost:${PORT}`));
