@@ -50,6 +50,7 @@ exports.getUserData = async (req, res, next) => {
     }
     let userData = user.data();
     userData.user_id = req.params.userId;
+    // console.log("send user data");
     res.send(userData).status(200);
   } catch (err) {
     res.status(500).send({

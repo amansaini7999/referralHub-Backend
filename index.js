@@ -15,7 +15,7 @@ app.use('/home',(req,res)=>{
   res.send("Welcome to the server");
 })
 app.use('/users', userRoutes);
-app.use('/jobListing', jobListingRoutes);
+app.use('/jobListings', jobListingRoutes);
 
 if (process.env.NODE_ENV == "development") {
   databaseSeed();

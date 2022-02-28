@@ -25,7 +25,7 @@ const isAuth = (req, res, next) => {
       // console.log("Authorized");
       next();
     })
-    .catch((err) => {res.status(403).send({ message: "Could not authorize" })});
+    .catch((err) => {console.log(err);res.status(403).send({ message: "Could not authorize" })});
 };
 
 module.exports = isAuth;
