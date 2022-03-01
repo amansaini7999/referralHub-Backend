@@ -5,6 +5,7 @@ const {
   postAddUser,
   getUserData,
   editUserData,
+  getOwnUser
 } = require("../controllers/users");
 const isAuth = require("../middleware/is-auth");
 
@@ -23,11 +24,13 @@ router.post(
   postAddUser
 );
 
+router.get('/getUser', isAuth, getOwnUser);
+
 ////GET route to fetch user data from firestore
 router.get("/getUser/:userId", getUserData);
 
 ////POST route to edit user details in firestore
-router.post(
+router.patch(
   "/editUser",
   isAuth,
   check("name", "name is required").isLength({ min: 2 }),

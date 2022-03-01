@@ -23,11 +23,38 @@ exports.postAddUser = async (req, res, next) => {
     }
     let data = req.body;
     // console.log(data);
+    data.job_posted = [];
+    data.job_requested = [];
     await firestore.collection("users").doc(req.user.user_id).set(data);
     res.status(201).send({
       message: "User added successfully",
     });
   } catch (err) {
+    res.status(500).send({
+      message: "Internal error occurred",
+      error: err,
+    });
+  }
+};
+
+exports.getOwnUser = async (req, res, next) => {
+  // console.log(req.params.userId);
+  try {
+    const user = await firestore
+      .collection("users")
+      .doc(req.user.user_id)
+      .get();
+    if (!user.exists) {
+      return res.status(404).send({
+        message: "User data does not exists",
+      });
+    }
+    let userData = user.data();
+    userData.user_id = req.user.user_id;
+    // console.log("send user data");
+    res.send(userData).status(200);
+  } catch (err) {
+    console.log(err);
     res.status(500).send({
       message: "Internal error occurred",
       error: err,
@@ -84,7 +111,7 @@ exports.editUserData = async (req, res, next) => {
       });
     }
     let data = req.body;
-    await firestore.collection("users").doc(req.user.user_id).set(data);
+    await firestore.collection("users").doc(req.user.user_id).update(data);
     res.status(201).send({
       message: "User data edited successfully",
     });

@@ -21,11 +21,18 @@ exports.postNewJob = async (req, res, next) => {
     }
     data.datePosted = new Date();
     data.postedBy = firestore.doc("users/" + req.user.user_id);
+    data.requested_referral = [];
+    data.isActive = true;
     let jobid;
     await firestore.collection("job-listings").add(data).then((docRef) =>{
       // console.log(docRef.id);
       jobid = docRef.id;
     });
+    const jobReference = firestore.doc("job-listings/" + jobid);
+    const userJobData = {jobReference: jobReference};
+    await firestore.collection("users").doc(req.user.user_id).update({
+      job_posted: admin.firestore.FieldValue.arrayUnion(userJobData)
+    })
     res.status(201).json({
       jobid: jobid
     });
@@ -159,7 +166,7 @@ exports.postReferral = async (req, res) => {
         message: "Job reference is not present",
       });
     }
-    
+    const jobId = data.jobReference;
 
     const job = await firestore
       .collection("job-listings")
@@ -171,11 +178,30 @@ exports.postReferral = async (req, res) => {
       });
     }
     
+    const user = await firestore.collection('users').doc(req.user.user_id).get();
+    const userData = user.data();
+    const job_requestedData = userData.job_requested;
+    for(let reqjob of job_requestedData)
+    {
+      reqjob = reqjob.jobReference;
+      // console.log(reqjob.id);
+      if(reqjob.id === jobId)
+      {
+        return res.send({
+          message: "You have already requested for this job"
+        })
+      }
+    }
     
-    data.jobReference = firestore.doc("job-listings/" + data.jobReference);
+
+    
+    data.jobReference = firestore.doc("job-listings/" + jobId);
     data.candidate = firestore.doc("users/" + req.user.user_id);
     data.nosRejected = 0;
+    data.isActive = true;
+    data.rejectedBy = [];
     const company = job.data().company;
+    let ind = 0;
     await firestore
       .collection("referral")
       .doc(company)
@@ -183,6 +209,8 @@ exports.postReferral = async (req, res) => {
       .then((docSnapshot) => {
         if(docSnapshot.exists)
         {
+          ind = docSnapshot.data().data.length;
+          // console.log(ind);
           firestore.collection('referral').doc(company).update({
             data: admin.firestore.FieldValue.arrayUnion(data)
           });
@@ -196,13 +224,19 @@ exports.postReferral = async (req, res) => {
 
         }
       })
-    await firestore
-      .collection("users")
-      .doc(req.user.user_id)
-      .collection("requested-referral")
-      .add({jobReference:data.jobReference});
+      const refReference = firestore.doc('referral/' + company + '/data/' + ind);
+      const jobReference = firestore.doc('job-listings/' + jobId);
+      const userJobData = {jobReference: jobReference};
+      const jobRefData = {refReference: refReference};
+
+      await firestore.collection("users").doc(req.user.user_id).update({
+        job_requested: admin.firestore.FieldValue.arrayUnion(userJobData)
+      })
+      await firestore.collection('job-listings').doc(jobId).update({
+        requested_referral: admin.firestore.FieldValue.arrayUnion(jobRefData)
+      })
     res.send({
-      message: "Referral is requested successfully",
+      message: "Referral requested successfully",
     });
   } catch (err) {
     console.log(err);
