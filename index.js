@@ -5,6 +5,7 @@ const { databaseSeed } = require("./utility/databaseSeeding");
 
 const userRoutes = require("./routes/users");
 const jobListingRoutes = require("./routes/job-listings");
+const referralRoutes = require("./routes/referral");
 
 const app = express();
 
@@ -16,6 +17,7 @@ app.use('/home',(req,res)=>{
 })
 app.use('/users', userRoutes);
 app.use('/jobListings', jobListingRoutes);
+app.use('/referral',referralRoutes);
 
 if (process.env.NODE_ENV == "development") {
   databaseSeed();

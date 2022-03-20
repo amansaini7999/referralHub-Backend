@@ -19,20 +19,25 @@ exports.postNewJob = async (req, res, next) => {
         error: errors.array()[0].msg,
       });
     }
+    data.company = data.company.replace(/\s+/g, ' ').trim();
+    // console.log(data.company);
     data.datePosted = new Date();
-    data.postedBy = firestore.doc("users/" + req.user.user_id);
+    if(data.isActive){
+      data.postedBy = firestore.doc("users/" + req.user.user_id);
+    }
     data.requested_referral = [];
-    data.isActive = true;
     let jobid;
     await firestore.collection("job-listings").add(data).then((docRef) =>{
       // console.log(docRef.id);
       jobid = docRef.id;
     });
-    const jobReference = firestore.doc("job-listings/" + jobid);
-    const userJobData = {jobReference: jobReference};
-    await firestore.collection("users").doc(req.user.user_id).update({
-      job_posted: admin.firestore.FieldValue.arrayUnion(userJobData)
-    })
+    if(data.isActive){
+      const jobReference = firestore.doc("job-listings/" + jobid);
+      const userJobData = {jobReference: jobReference};
+      await firestore.collection("users").doc(req.user.user_id).update({
+        job_posted: admin.firestore.FieldValue.arrayUnion(userJobData)
+      })
+    }
     res.status(201).json({
       jobid: jobid
     });
@@ -53,6 +58,7 @@ exports.getJobListings = async (req, res, next) => {
     if (!lastJobId) {
       jobs = await firestore
         .collection("job-listings")
+        .where("isActive", "==", true)
         .orderBy("datePosted", "desc")
         .limit(pageSize + 1)
         .get();
@@ -64,6 +70,7 @@ exports.getJobListings = async (req, res, next) => {
       if (!lastJob.exists) {
         jobs = await firestore
         .collection("job-listings")
+        .where("isActive", "==", true)
         .orderBy("datePosted", "desc")
         .limit(pageSize + 1)
         .get();
@@ -71,6 +78,7 @@ exports.getJobListings = async (req, res, next) => {
       else{
         jobs = await firestore
           .collection("job-listings")
+          .where("isActive", "==", true)
           .orderBy("datePosted", "desc")
           .startAfter(lastJob)
           .limit(pageSize + 1)
@@ -115,6 +123,7 @@ exports.getJobListings = async (req, res, next) => {
       })
       .status(200);
   } catch (err) {
+    // console.log(err);
     res.status(500).send({
       message: "Internal error occurred",
       error: err,
@@ -177,6 +186,13 @@ exports.postReferral = async (req, res) => {
         message: "Job does not exists",
       });
     }
+
+    if(job.data().isActive == false && job.data().self != true)
+    {
+      return res.send({
+        message: "Job Closed"
+      });
+    }
     
     const user = await firestore.collection('users').doc(req.user.user_id).get();
     const userData = user.data();
@@ -195,18 +211,24 @@ exports.postReferral = async (req, res) => {
     
 
     
-    data.jobReference = firestore.doc("job-listings/" + jobId);
-    data.candidate = firestore.doc("users/" + req.user.user_id);
+    data.jobReference = jobId;
+    data.candidate = req.user.user_id;
     data.nosRejected = 0;
     data.isActive = true;
     data.rejectedBy = [];
-    const company = job.data().company;
+    data.datePosted = new Date();
+    let company = job.data().company;
+    company= company.toLowerCase();
+    // console.log(company);
+    // return;
     let ind = 0;
     await firestore
       .collection("referral")
       .doc(company)
       .get()
       .then((docSnapshot) => {
+        // console.log(docSnapshot.exists);
+        // return ;
         if(docSnapshot.exists)
         {
           ind = docSnapshot.data().data.length;
@@ -216,6 +238,7 @@ exports.postReferral = async (req, res) => {
           });
         }
         else{
+          // console.log("there is");
           const doc = {
             key: company,
             data: [data]
@@ -224,10 +247,10 @@ exports.postReferral = async (req, res) => {
 
         }
       })
-      const refReference = firestore.doc('referral/' + company + '/data/' + ind);
+      // const refReference = firestore.doc('referral/' + company + '/data/' + ind);
       const jobReference = firestore.doc('job-listings/' + jobId);
       const userJobData = {jobReference: jobReference};
-      const jobRefData = {refReference: refReference};
+      const jobRefData = {refInd: ind};
 
       await firestore.collection("users").doc(req.user.user_id).update({
         job_requested: admin.firestore.FieldValue.arrayUnion(userJobData)
@@ -239,10 +262,40 @@ exports.postReferral = async (req, res) => {
       message: "Referral requested successfully",
     });
   } catch (err) {
-    console.log(err);
+    // console.log(err);
     res.status(500).send({
       message: "Internal error occurred",
       error: err,
     });
   }
 };
+
+exports.disableJob = async (req,res) => {
+  try {
+    const job = await firestore
+      .collection("job-listings")
+      .doc(req.params.jobid)
+      .get();
+    if (!job.exists) {
+      return res.status(404).send({
+        message: "Job data does not exists",
+      });
+    }
+
+    if(job.data().postedBy.id != req.user.user_id)
+    {
+      return res.status(400).send("Unauthorize");
+    }
+    await firestore.collection('job-listings').doc(req.params.jobid).update({
+      isActive: false
+    })
+    res.status(200).send("Job Closed Successfully");
+    
+  } catch (err) {
+    // console.log(err);
+    res.status(500).send({
+      message: "Internal error occurred",
+      error: err,
+    });
+  }
+}
