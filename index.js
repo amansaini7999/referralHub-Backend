@@ -12,7 +12,7 @@ const app = express();
 app.use(bodyParser.json());
 app.use(require("cors")());
 
-app.use('/home',(req,res)=>{
+app.use('/',(req,res)=>{
   res.send("Welcome to the server");
 })
 app.use('/users', userRoutes);
